@@ -2,22 +2,17 @@
 
 namespace Arckinteractive\StatamicBardFontSize;
 
-use ProseMirrorToHtml\Marks\Mark;
+use Tiptap\Core\Mark;
+use Tiptap\Utils\HTML;
 
 class ArckFontSize extends Mark
 {
-    protected $markType = 'ArckFontSize';
-    protected $tagName = 'span';
+    public static $name = 'ArckFontSize';
 
-    public function matching(): bool
-    {
-        return $this->mark->type === $this->markType;
-    }
-
-    public function tag(): ?array
+    public function renderHTML($mark, $HTMLAttributes = [])
     {
         $style = 'font-size: ';
-        switch ($this->mark->attrs->key) {
+        switch ($mark->attrs->key) {
             case 'text-xs':
                 $style .= '0.75rem;';
             break;
@@ -60,13 +55,15 @@ class ArckFontSize extends Mark
         }
 
         return [
-            [
-                'tag'   => 'span',
-                'attrs' => [
+            'span',
+            HTML::mergeAttributes(
+                [
                     'class' => 'arck-font-size',
                     'style' => $style
                 ],
-            ],
+                $HTMLAttributes,
+            ),
+            0
         ];
     }
 }

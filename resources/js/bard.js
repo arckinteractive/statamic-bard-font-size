@@ -1,15 +1,12 @@
-import ArckFontSize from './ArckFontSize';
+import { ArckFontSize } from './ArckFontSize';
 import ArckFontSizeMenu from './ArckFontSizeMenu.vue';
 
-Statamic.$bard.extend(({mark}) => mark(new ArckFontSize()));
+Statamic.$bard.addExtension(() => ArckFontSize);
 Statamic.$bard.buttons(() => {
     return {
         name: 'arckfontsize',
         text: 'Font Size',
-        command: 'classType',
-        args: {
-            key: ""
-        },
+        command: (editor) => editor.commands.toggleArckFontSize(),
         icon: 'arck-font-size',
         component: ArckFontSizeMenu
     };

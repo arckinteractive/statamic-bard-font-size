@@ -68,7 +68,7 @@ export default {
             };
         },
         currentKey() {
-            return this.editor.getMarkAttrs('ArckFontSize').key;
+            return this.editor.getAttributes('ArckFontSize').key;
         }
     },
     data() {
@@ -83,7 +83,7 @@ export default {
         },
         setClassType(classTypeKey) {
             // update the editor
-            this.editor.commands.ArckFontSize({
+            this.editor.commands.toggleArckFontSize({
                 key: classTypeKey == this.currentKey ? false : classTypeKey
             })
             // hide the menu
