@@ -68,7 +68,7 @@ export default {
             };
         },
         currentKey() {
-            return this.editor.getMarkAttrs('ArckFontSize').key;
+            return this.editor.getAttributes('ArckFontSize').key;
         }
     },
     data() {
